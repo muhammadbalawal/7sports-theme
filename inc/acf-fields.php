@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF Field Groups
+ * ACF Field Groups - FREE VERSION (No Repeaters)
  */
 
 if(function_exists('acf_add_local_field_group')) {
@@ -29,54 +29,66 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'Hero Title',
                 'name' => 'hero_title',
                 'type' => 'text',
-                'default_value' => 'Soccer. Multisport. Hockey.',
             ),
             array(
                 'key' => 'field_hero_age_range',
                 'label' => 'Age Range',
                 'name' => 'hero_age_range',
                 'type' => 'text',
-                'default_value' => '2 - 12 ans',
             ),
             array(
-                'key' => 'field_hero_buttons',
-                'label' => 'Hero Buttons',
-                'name' => 'hero_buttons',
-                'type' => 'repeater',
-                'layout' => 'table',
-                'button_label' => 'Add Button',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_button_text',
-                        'label' => 'Button Text',
-                        'name' => 'button_text',
-                        'type' => 'text',
-                    ),
-                    array(
-                        'key' => 'field_button_link',
-                        'label' => 'Button Link',
-                        'name' => 'button_link',
-                        'type' => 'url',
-                    ),
-                    array(
-                        'key' => 'field_button_style',
-                        'label' => 'Button Style',
-                        'name' => 'button_style',
-                        'type' => 'select',
-                        'choices' => array(
-                            'red' => 'Red',
-                            'white' => 'White',
-                        ),
-                        'default_value' => 'red',
-                    ),
-                ),
+                'key' => 'field_hero_button_1_text',
+                'label' => 'Button 1 Text',
+                'name' => 'hero_button_1_text',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_hero_button_1_link',
+                'label' => 'Button 1 Link',
+                'name' => 'hero_button_1_link',
+                'type' => 'url',
+            ),
+            array(
+                'key' => 'field_hero_button_2_text',
+                'label' => 'Button 2 Text',
+                'name' => 'hero_button_2_text',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_hero_button_2_link',
+                'label' => 'Button 2 Link',
+                'name' => 'hero_button_2_link',
+                'type' => 'url',
+            ),
+            array(
+                'key' => 'field_hero_button_3_text',
+                'label' => 'Button 3 Text',
+                'name' => 'hero_button_3_text',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_hero_button_3_link',
+                'label' => 'Button 3 Link',
+                'name' => 'hero_button_3_link',
+                'type' => 'url',
+            ),
+            array(
+                'key' => 'field_hero_button_4_text',
+                'label' => 'Button 4 Text',
+                'name' => 'hero_button_4_text',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_hero_button_4_link',
+                'label' => 'Button 4 Link',
+                'name' => 'hero_button_4_link',
+                'type' => 'url',
             ),
             array(
                 'key' => 'field_hero_tagline',
                 'label' => 'Hero Tagline',
                 'name' => 'hero_tagline',
                 'type' => 'text',
-                'default_value' => 'Confiance. Découverte. Développement. Plaisir.',
             ),
         ),
         'location' => array(
@@ -90,39 +102,49 @@ if(function_exists('acf_add_local_field_group')) {
         ),
     ));
 
-    // Homepage Highlights
+    // Homepage Highlights - NO REPEATER
     acf_add_local_field_group(array(
-        'key' => 'group_homepage_highlights',
+        'key' => 'group_homepage_highlights_v3',
         'title' => 'Highlights Section',
         'fields' => array(
             array(
-                'key' => 'field_highlights',
-                'label' => 'Highlights',
-                'name' => 'highlights',
-                'type' => 'repeater',
-                'layout' => 'table',
-                'button_label' => 'Add Highlight',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_highlight_title',
-                        'label' => 'Title',
-                        'name' => 'title',
-                        'type' => 'text',
-                    ),
-                    array(
-                        'key' => 'field_highlight_description',
-                        'label' => 'Description',
-                        'name' => 'description',
-                        'type' => 'text',
-                    ),
-                ),
-            ),
-            array(
-                'key' => 'field_separator_image',
-                'label' => 'Separator Image',
-                'name' => 'separator_image',
+                'key' => 'field_highlight_1_image',
+                'label' => 'Highlight 1 - Image',
+                'name' => 'highlight_1_image',
                 'type' => 'image',
                 'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_highlight_1_title',
+                'label' => 'Highlight 1 - Title',
+                'name' => 'highlight_1_title',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_highlight_2_image',
+                'label' => 'Highlight 2 - Image',
+                'name' => 'highlight_2_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_highlight_2_title',
+                'label' => 'Highlight 2 - Title',
+                'name' => 'highlight_2_title',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_highlight_3_image',
+                'label' => 'Highlight 3 - Image',
+                'name' => 'highlight_3_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_highlight_3_title',
+                'label' => 'Highlight 3 - Title',
+                'name' => 'highlight_3_title',
+                'type' => 'text',
             ),
         ),
         'location' => array(
@@ -136,9 +158,9 @@ if(function_exists('acf_add_local_field_group')) {
         ),
     ));
 
-    // Homepage Programs
+    // Homepage Programs - 3 INDIVIDUAL PROGRAMS
     acf_add_local_field_group(array(
-        'key' => 'group_homepage_programs',
+        'key' => 'group_homepage_programs_v3',
         'title' => 'Programs Section',
         'fields' => array(
             array(
@@ -146,49 +168,105 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'Section Title',
                 'name' => 'programs_section_title',
                 'type' => 'text',
-                'default_value' => 'Aperçu des programmes',
+            ),
+            // Program 1
+            array(
+                'key' => 'field_program_1_image',
+                'label' => 'Program 1 - Image',
+                'name' => 'program_1_image',
+                'type' => 'image',
+                'return_format' => 'url',
             ),
             array(
-                'key' => 'field_program_cards',
-                'label' => 'Program Cards',
-                'name' => 'program_cards',
-                'type' => 'repeater',
-                'layout' => 'block',
-                'button_label' => 'Add Program',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_program_name',
-                        'label' => 'Program Name',
-                        'name' => 'program_name',
-                        'type' => 'text',
-                    ),
-                    array(
-                        'key' => 'field_program_age',
-                        'label' => 'Age Range',
-                        'name' => 'program_age',
-                        'type' => 'text',
-                    ),
-                    array(
-                        'key' => 'field_program_description',
-                        'label' => 'Description',
-                        'name' => 'program_description',
-                        'type' => 'textarea',
-                        'rows' => 3,
-                    ),
-                    array(
-                        'key' => 'field_program_image',
-                        'label' => 'Program Image',
-                        'name' => 'program_image',
-                        'type' => 'image',
-                        'return_format' => 'url',
-                    ),
-                    array(
-                        'key' => 'field_program_link',
-                        'label' => 'Link',
-                        'name' => 'program_link',
-                        'type' => 'url',
-                    ),
-                ),
+                'key' => 'field_program_1_name',
+                'label' => 'Program 1 - Name',
+                'name' => 'program_1_name',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_1_age',
+                'label' => 'Program 1 - Age Range',
+                'name' => 'program_1_age',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_1_description',
+                'label' => 'Program 1 - Description',
+                'name' => 'program_1_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_program_1_link',
+                'label' => 'Program 1 - Link',
+                'name' => 'program_1_link',
+                'type' => 'url',
+            ),
+            // Program 2
+            array(
+                'key' => 'field_program_2_image',
+                'label' => 'Program 2 - Image',
+                'name' => 'program_2_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_program_2_name',
+                'label' => 'Program 2 - Name',
+                'name' => 'program_2_name',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_2_age',
+                'label' => 'Program 2 - Age Range',
+                'name' => 'program_2_age',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_2_description',
+                'label' => 'Program 2 - Description',
+                'name' => 'program_2_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_program_2_link',
+                'label' => 'Program 2 - Link',
+                'name' => 'program_2_link',
+                'type' => 'url',
+            ),
+            // Program 3
+            array(
+                'key' => 'field_program_3_image',
+                'label' => 'Program 3 - Image',
+                'name' => 'program_3_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_program_3_name',
+                'label' => 'Program 3 - Name',
+                'name' => 'program_3_name',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_3_age',
+                'label' => 'Program 3 - Age Range',
+                'name' => 'program_3_age',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_program_3_description',
+                'label' => 'Program 3 - Description',
+                'name' => 'program_3_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_program_3_link',
+                'label' => 'Program 3 - Link',
+                'name' => 'program_3_link',
+                'type' => 'url',
             ),
         ),
         'location' => array(
@@ -202,9 +280,9 @@ if(function_exists('acf_add_local_field_group')) {
         ),
     ));
 
-    // Homepage Testimonials
+    // Homepage Testimonials - 3 INDIVIDUAL TESTIMONIALS
     acf_add_local_field_group(array(
-        'key' => 'group_homepage_testimonials',
+        'key' => 'group_homepage_testimonials_v3',
         'title' => 'Testimonials Section',
         'fields' => array(
             array(
@@ -219,39 +297,75 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'Section Title',
                 'name' => 'testimonials_title',
                 'type' => 'text',
-                'default_value' => 'What parents say',
+            ),
+            // Testimonial 1
+            array(
+                'key' => 'field_testimonial_1_rating',
+                'label' => 'Testimonial 1 - Rating (1-5)',
+                'name' => 'testimonial_1_rating',
+                'type' => 'number',
+                'default_value' => 5,
+                'min' => 1,
+                'max' => 5,
             ),
             array(
-                'key' => 'field_testimonials',
-                'label' => 'Testimonials',
-                'name' => 'testimonials',
-                'type' => 'repeater',
-                'layout' => 'block',
-                'button_label' => 'Add Testimonial',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_rating',
-                        'label' => 'Rating (1-5)',
-                        'name' => 'rating',
-                        'type' => 'number',
-                        'default_value' => 5,
-                        'min' => 1,
-                        'max' => 5,
-                    ),
-                    array(
-                        'key' => 'field_testimonial_text',
-                        'label' => 'Testimonial Text',
-                        'name' => 'testimonial_text',
-                        'type' => 'textarea',
-                        'rows' => 4,
-                    ),
-                    array(
-                        'key' => 'field_author',
-                        'label' => 'Author',
-                        'name' => 'author',
-                        'type' => 'text',
-                    ),
-                ),
+                'key' => 'field_testimonial_1_text',
+                'label' => 'Testimonial 1 - Text',
+                'name' => 'testimonial_1_text',
+                'type' => 'textarea',
+                'rows' => 4,
+            ),
+            array(
+                'key' => 'field_testimonial_1_author',
+                'label' => 'Testimonial 1 - Author',
+                'name' => 'testimonial_1_author',
+                'type' => 'text',
+            ),
+            // Testimonial 2
+            array(
+                'key' => 'field_testimonial_2_rating',
+                'label' => 'Testimonial 2 - Rating (1-5)',
+                'name' => 'testimonial_2_rating',
+                'type' => 'number',
+                'default_value' => 5,
+                'min' => 1,
+                'max' => 5,
+            ),
+            array(
+                'key' => 'field_testimonial_2_text',
+                'label' => 'Testimonial 2 - Text',
+                'name' => 'testimonial_2_text',
+                'type' => 'textarea',
+                'rows' => 4,
+            ),
+            array(
+                'key' => 'field_testimonial_2_author',
+                'label' => 'Testimonial 2 - Author',
+                'name' => 'testimonial_2_author',
+                'type' => 'text',
+            ),
+            // Testimonial 3
+            array(
+                'key' => 'field_testimonial_3_rating',
+                'label' => 'Testimonial 3 - Rating (1-5)',
+                'name' => 'testimonial_3_rating',
+                'type' => 'number',
+                'default_value' => 5,
+                'min' => 1,
+                'max' => 5,
+            ),
+            array(
+                'key' => 'field_testimonial_3_text',
+                'label' => 'Testimonial 3 - Text',
+                'name' => 'testimonial_3_text',
+                'type' => 'textarea',
+                'rows' => 4,
+            ),
+            array(
+                'key' => 'field_testimonial_3_author',
+                'label' => 'Testimonial 3 - Author',
+                'name' => 'testimonial_3_author',
+                'type' => 'text',
             ),
         ),
         'location' => array(
@@ -265,9 +379,9 @@ if(function_exists('acf_add_local_field_group')) {
         ),
     ));
 
-    // Homepage Important Messages
+    // Homepage Important Messages - 1 MESSAGE
     acf_add_local_field_group(array(
-        'key' => 'group_homepage_messages',
+        'key' => 'group_homepage_messages_v3',
         'title' => 'Important Messages Section',
         'fields' => array(
             array(
@@ -275,36 +389,25 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'Section Title',
                 'name' => 'important_messages_title',
                 'type' => 'text',
-                'default_value' => 'Messages Importants',
             ),
             array(
-                'key' => 'field_important_messages',
-                'label' => 'Messages',
-                'name' => 'important_messages',
-                'type' => 'repeater',
-                'layout' => 'block',
-                'button_label' => 'Add Message',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_message_location',
-                        'label' => 'Location',
-                        'name' => 'location',
-                        'type' => 'text',
-                    ),
-                    array(
-                        'key' => 'field_message',
-                        'label' => 'Message',
-                        'name' => 'message',
-                        'type' => 'textarea',
-                        'rows' => 2,
-                    ),
-                    array(
-                        'key' => 'field_message_link',
-                        'label' => 'Link',
-                        'name' => 'link',
-                        'type' => 'url',
-                    ),
-                ),
+                'key' => 'field_message_location',
+                'label' => 'Message Location',
+                'name' => 'message_location',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_message_text',
+                'label' => 'Message Text',
+                'name' => 'message_text',
+                'type' => 'textarea',
+                'rows' => 2,
+            ),
+            array(
+                'key' => 'field_message_link',
+                'label' => 'Message Link',
+                'name' => 'message_link',
+                'type' => 'url',
             ),
         ),
         'location' => array(
@@ -328,7 +431,6 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'About Title',
                 'name' => 'about_title',
                 'type' => 'text',
-                'default_value' => 'Building Champions Since 2018',
             ),
             array(
                 'key' => 'field_about_description',
@@ -342,7 +444,6 @@ if(function_exists('acf_add_local_field_group')) {
                 'label' => 'Footer CTA Title',
                 'name' => 'footer_cta_title',
                 'type' => 'text',
-                'default_value' => 'Ready to Register?',
             ),
         ),
         'location' => array(
