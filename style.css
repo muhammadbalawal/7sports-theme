@@ -1,0 +1,18 @@
+/*
+Theme Name: 7Sports Theme
+Theme URI: https://7sports.com
+Author: Your Name
+Author URI: https://7sports.com
+Description: Custom sports business theme with ACF and Tailwind CSS
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sevensports
+*/
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
