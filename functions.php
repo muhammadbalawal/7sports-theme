@@ -1,21 +1,27 @@
 <?php
 /**
- * 7Sports Theme Functions - Bootstrap Version
+ * 7Sports Theme Functions - Bootstrap + MetaBox Version
  */
 
+// Enqueue Bootstrap and scripts
 function sevensports_enqueue_assets() {
+    // Bootstrap CSS from CDN
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array(), '5.3.2');
     
+    // Theme stylesheet (for any custom CSS)
     wp_enqueue_style('main-style', get_stylesheet_uri(), array('bootstrap'), '1.0.0');
-
+    
+    // Bootstrap JS Bundle (includes Popper)
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array(), '5.3.2', true);
-
+    
+    // Main JS
     if (file_exists(get_template_directory() . '/js/main.js')) {
         wp_enqueue_script('main-js', get_template_directory_uri() . '/js/main.js', array('bootstrap-js'), '1.0.0', true);
     }
 }
 add_action('wp_enqueue_scripts', 'sevensports_enqueue_assets');
 
+// Theme setup
 function sevensports_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -28,21 +34,6 @@ function sevensports_setup() {
 }
 add_action('after_setup_theme', 'sevensports_setup');
 
-require get_template_directory() . '/inc/acf-fields.php';
-
-add_action('acf/init', 'sevensports_acf_op_init');
-function sevensports_acf_op_init() {
-    if(function_exists('acf_add_options_page')) {
-        acf_add_options_page(array(
-            'page_title'    => 'Site Settings',
-            'menu_title'    => 'Site Settings',
-            'menu_slug'     => 'site-settings',
-            'capability'    => 'edit_posts',
-            'redirect'      => false
-        ));
-    }
-}
-
-add_filter('acf/settings/load_json', '__return_false');
-
+// Include MetaBox fields
+require get_template_directory() . '/inc/metabox-fields.php';
 ?>

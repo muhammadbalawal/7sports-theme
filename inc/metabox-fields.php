@@ -47,6 +47,7 @@ function sevensports_register_meta_boxes( $meta_boxes ) {
                 'type'        => 'group',
                 'clone'       => true,
                 'sort_clone'  => true,
+                'collapsible' => true,
                 'add_button'  => '+ Add Button',
                 'fields'      => array(
                     array(
@@ -87,6 +88,7 @@ function sevensports_register_meta_boxes( $meta_boxes ) {
                 'type'        => 'group',
                 'clone'       => true,
                 'sort_clone'  => true,
+                'collapsible' => true,
                 'add_button'  => '+ Add Highlight',
                 'fields'      => array(
                     array(
@@ -128,6 +130,7 @@ function sevensports_register_meta_boxes( $meta_boxes ) {
                 'type'        => 'group',
                 'clone'       => true,
                 'sort_clone'  => true,
+                'collapsible' => true,
                 'add_button'  => '+ Add Program',
                 'fields'      => array(
                     array(
@@ -191,6 +194,7 @@ function sevensports_register_meta_boxes( $meta_boxes ) {
                 'type'        => 'group',
                 'clone'       => true,
                 'sort_clone'  => true,
+                'collapsible' => true,
                 'add_button'  => '+ Add Testimonial',
                 'fields'      => array(
                     array(
@@ -240,6 +244,7 @@ function sevensports_register_meta_boxes( $meta_boxes ) {
                 'type'        => 'group',
                 'clone'       => true,
                 'sort_clone'  => true,
+                'collapsible' => true,
                 'add_button'  => '+ Add Message',
                 'fields'      => array(
                     array(
