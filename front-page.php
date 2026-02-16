@@ -1,6 +1,6 @@
 <?php
 /**
- * Home Page Template - MetaBox Version with Carousels
+ * Home Page Template - Fixed Fields Version
  */
 ?>
 <!DOCTYPE html>
@@ -89,17 +89,57 @@
         
         <div class="d-flex flex-wrap gap-3 justify-content-center mb-5">
             <?php 
-            $hero_buttons = rwmb_meta( 'hero_buttons' );
-            if ( !empty($hero_buttons) ):
-                foreach ( $hero_buttons as $button ):
+            // Button 1
+            $btn1_text = rwmb_meta( 'hero_button_1_text' );
+            $btn1_link = rwmb_meta( 'hero_button_1_link' );
+            if ( $btn1_text && $btn1_link ):
             ?>
-                    <a href="<?php echo esc_url($button['button_link']); ?>" 
-                       class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">
-                        <?php echo esc_html($button['button_text']); ?>
-                    </a>
+                <a href="<?php echo esc_url($btn1_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">
+                    <?php echo esc_html($btn1_text); ?>
+                </a>
+            <?php endif; ?>
+            
             <?php 
-                endforeach;
-            else: ?>
+            // Button 2
+            $btn2_text = rwmb_meta( 'hero_button_2_text' );
+            $btn2_link = rwmb_meta( 'hero_button_2_link' );
+            if ( $btn2_text && $btn2_link ):
+            ?>
+                <a href="<?php echo esc_url($btn2_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">
+                    <?php echo esc_html($btn2_text); ?>
+                </a>
+            <?php endif; ?>
+            
+            <?php 
+            // Button 3
+            $btn3_text = rwmb_meta( 'hero_button_3_text' );
+            $btn3_link = rwmb_meta( 'hero_button_3_link' );
+            if ( $btn3_text && $btn3_link ):
+            ?>
+                <a href="<?php echo esc_url($btn3_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">
+                    <?php echo esc_html($btn3_text); ?>
+                </a>
+            <?php endif; ?>
+            
+            <?php 
+            // Button 4
+            $btn4_text = rwmb_meta( 'hero_button_4_text' );
+            $btn4_link = rwmb_meta( 'hero_button_4_link' );
+            if ( $btn4_text && $btn4_link ):
+            ?>
+                <a href="<?php echo esc_url($btn4_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">
+                    <?php echo esc_html($btn4_text); ?>
+                </a>
+            <?php endif; ?>
+            
+            <?php 
+            // Show placeholder buttons if none are filled
+            if ( !$btn1_text && !$btn2_text && !$btn3_text && !$btn4_text ):
+            ?>
                 <button class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">BUTTON 1</button>
                 <button class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">BUTTON 2</button>
                 <button class="btn btn-outline-dark btn-lg px-4 py-3" style="min-width: 200px;">BUTTON 3</button>
@@ -120,21 +160,33 @@
 <section class="section-wireframe">
     <div class="container">
         <?php 
-        $highlights = rwmb_meta( 'highlights' );
-        if ( !empty($highlights) ): ?>
+        // Check if any highlights are filled
+        $has_highlights = false;
+        for ($i = 1; $i <= 3; $i++) {
+            if ( rwmb_meta("highlight_{$i}_title") ) {
+                $has_highlights = true;
+                break;
+            }
+        }
+        
+        if ( $has_highlights ): ?>
             <div class="row g-4">
-                <?php foreach ( $highlights as $highlight ): 
-                    $image_url = '';
-                    if ( !empty($highlight['image']) ) {
-                        $image_url = wp_get_attachment_image_url( $highlight['image'][0], 'large' );
-                    }
+                <?php for ($i = 1; $i <= 3; $i++): 
+                    $title = rwmb_meta("highlight_{$i}_title");
+                    $image = rwmb_meta("highlight_{$i}_image");
+                    
+                    if ( $title ): // Only show if title exists
+                        $image_url = '';
+                        if ( !empty($image) ) {
+                            $image_url = wp_get_attachment_image_url( $image[0], 'large' );
+                        }
                 ?>
                     <div class="col-md-4">
                         <div class="card border border-2 h-100 bg-white">
                             <?php if ( $image_url ): ?>
                                 <img src="<?php echo esc_url($image_url); ?>" 
                                      class="card-img-top" 
-                                     alt="<?php echo esc_attr($highlight['title']); ?>"
+                                     alt="<?php echo esc_attr($title); ?>"
                                      style="height: 250px; object-fit: cover;">
                             <?php else: ?>
                                 <div class="wireframe-box" style="height: 250px; margin: 0; border-radius: 0; border-bottom: 2px dashed #999;">
@@ -142,18 +194,16 @@
                                 </div>
                             <?php endif; ?>
                             <div class="card-body text-center p-4">
-                                <?php if ( !empty($highlight['title']) ): ?>
-                                    <h3 class="h5 fw-bold mb-0"><?php echo esc_html($highlight['title']); ?></h3>
-                                <?php else: ?>
-                                    <div class="wireframe-box" style="min-height: 40px;">TITLE</div>
-                                <?php endif; ?>
+                                <h3 class="h5 fw-bold mb-0"><?php echo esc_html($title); ?></h3>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php 
+                    endif;
+                endfor; ?>
             </div>
         <?php else: ?>
-            <div class="wireframe-box">Click "+ Add Highlight" in WordPress admin to add highlights</div>
+            <div class="wireframe-box">Add highlights in WordPress admin (Highlights Section)</div>
         <?php endif; ?>
     </div>
 </section>
@@ -169,7 +219,21 @@
         <?php endif; ?>
         
         <?php 
-        $programs = rwmb_meta( 'program_cards' );
+        // Collect programs
+        $programs = array();
+        for ($i = 1; $i <= 3; $i++) {
+            $name = rwmb_meta("program_{$i}_name");
+            if ( $name ) {
+                $programs[] = array(
+                    'name' => $name,
+                    'age' => rwmb_meta("program_{$i}_age"),
+                    'description' => rwmb_meta("program_{$i}_description"),
+                    'link' => rwmb_meta("program_{$i}_link"),
+                    'image' => rwmb_meta("program_{$i}_image"),
+                );
+            }
+        }
+        
         if ( !empty($programs) ): ?>
             <div id="programsCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -195,9 +259,13 @@
                                         <?php endif; ?>
                                         <div class="card-body p-4">
                                             <h3 class="h5 fw-bold mb-2"><?php echo esc_html($program['name']); ?></h3>
-                                            <p class="fw-semibold mb-3"><?php echo esc_html($program['age']); ?></p>
-                                            <p class="mb-4"><?php echo esc_html($program['description']); ?></p>
-                                            <?php if ( !empty($program['link']) ): ?>
+                                            <?php if ( $program['age'] ): ?>
+                                                <p class="fw-semibold mb-3"><?php echo esc_html($program['age']); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $program['description'] ): ?>
+                                                <p class="mb-4"><?php echo esc_html($program['description']); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $program['link'] ): ?>
                                                 <a href="<?php echo esc_url($program['link']); ?>" class="btn btn-outline-dark">Learn More</a>
                                             <?php endif; ?>
                                         </div>
@@ -221,7 +289,7 @@
                 <?php endif; ?>
             </div>
         <?php else: ?>
-            <div class="wireframe-box mb-5">Click "+ Add Program" in WordPress admin to add programs</div>
+            <div class="wireframe-box mb-5">Add programs in WordPress admin (Programs Section)</div>
         <?php endif; ?>
         
         <!-- View All Programs Button -->
@@ -244,7 +312,19 @@
         <?php endif; ?>
         
         <?php 
-        $testimonials = rwmb_meta( 'testimonials' );
+        // Collect testimonials
+        $testimonials = array();
+        for ($i = 1; $i <= 3; $i++) {
+            $author = rwmb_meta("testimonial_{$i}_author");
+            if ( $author ) {
+                $testimonials[] = array(
+                    'rating' => rwmb_meta("testimonial_{$i}_rating"),
+                    'text' => rwmb_meta("testimonial_{$i}_text"),
+                    'author' => $author,
+                );
+            }
+        }
+        
         if ( !empty($testimonials) ): ?>
             <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -280,7 +360,7 @@
                 <?php endif; ?>
             </div>
         <?php else: ?>
-            <div class="wireframe-box">Click "+ Add Testimonial" in WordPress admin to add testimonials</div>
+            <div class="wireframe-box">Add testimonials in WordPress admin (Testimonials Section)</div>
         <?php endif; ?>
     </div>
 </section>
@@ -296,7 +376,19 @@
         <?php endif; ?>
         
         <?php 
-        $messages = rwmb_meta( 'important_messages' );
+        // Collect messages
+        $messages = array();
+        for ($i = 1; $i <= 2; $i++) {
+            $location = rwmb_meta("message_{$i}_location");
+            if ( $location ) {
+                $messages[] = array(
+                    'location' => $location,
+                    'message' => rwmb_meta("message_{$i}_text"),
+                    'link' => rwmb_meta("message_{$i}_link"),
+                );
+            }
+        }
+        
         if ( !empty($messages) ): ?>
             <div id="messagesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -307,7 +399,7 @@
                             <div class="border border-3 p-5 bg-white">
                                 <h3 class="h2 fw-bold text-center mb-3"><?php echo esc_html($message['location']); ?></h3>
                                 <p class="h5 text-center mb-3"><?php echo esc_html($message['message']); ?></p>
-                                <?php if ( !empty($message['link']) ): ?>
+                                <?php if ( $message['link'] ): ?>
                                     <p class="text-center">
                                         <a href="<?php echo esc_url($message['link']); ?>" class="text-decoration-underline fw-bold">
                                             voir plus
@@ -330,59 +422,44 @@
                 <?php endif; ?>
             </div>
         <?php else: ?>
-            <div class="wireframe-box">Click "+ Add Message" in WordPress admin to add messages</div>
+            <div class="wireframe-box">Add messages in WordPress admin (Important Messages Section)</div>
         <?php endif; ?>
     </div>
 </section>
 
-<!-- About Teaser -->
+<!-- Call to Action Buttons -->
 <section class="section-wireframe">
     <div class="container text-center">
-        <div class="mx-auto" style="max-width: 700px;">
-            <?php $about_title = rwmb_meta( 'about_title' ); ?>
-            <?php if ( $about_title ): ?>
-                <h2 class="display-6 fw-bold mb-4"><?php echo esc_html($about_title); ?></h2>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <?php 
+            // CTA Button 1
+            $cta1_text = rwmb_meta( 'cta_button_1_text' );
+            $cta1_link = rwmb_meta( 'cta_button_1_link' );
+            if ( $cta1_text && $cta1_link ):
+            ?>
+                <a href="<?php echo esc_url($cta1_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-5 py-3" style="min-width: 250px;">
+                    <?php echo esc_html($cta1_text); ?>
+                </a>
             <?php else: ?>
-                <div class="wireframe-box mb-4">ABOUT TITLE</div>
+                <div class="wireframe-box" style="min-width: 250px;">CTA BUTTON 1</div>
             <?php endif; ?>
             
-            <?php $about_desc = rwmb_meta( 'about_description' ); ?>
-            <?php if ( $about_desc ): ?>
-                <p class="mb-5"><?php echo esc_html($about_desc); ?></p>
+            <?php 
+            // CTA Button 2
+            $cta2_text = rwmb_meta( 'cta_button_2_text' );
+            $cta2_link = rwmb_meta( 'cta_button_2_link' );
+            if ( $cta2_text && $cta2_link ):
+            ?>
+                <a href="<?php echo esc_url($cta2_link); ?>" 
+                   class="btn btn-outline-dark btn-lg px-5 py-3" style="min-width: 250px;">
+                    <?php echo esc_html($cta2_text); ?>
+                </a>
             <?php else: ?>
-                <div class="wireframe-box mb-5">ABOUT DESCRIPTION</div>
+                <div class="wireframe-box" style="min-width: 250px;">CTA BUTTON 2</div>
             <?php endif; ?>
-            
-            <a href="<?php echo home_url('/about'); ?>" class="btn btn-outline-dark btn-lg px-5 py-3">
-                A propos de nous
-            </a>
         </div>
     </div>
 </section>
 
-<!-- Footer CTA -->
-<section class="section-wireframe">
-    <div class="container text-center">
-        <?php $footer_cta = rwmb_meta( 'footer_cta_title' ); ?>
-        <?php if ( $footer_cta ): ?>
-            <h2 class="display-6 fw-bold mb-5"><?php echo esc_html($footer_cta); ?></h2>
-        <?php else: ?>
-            <div class="wireframe-box mb-5 mx-auto" style="max-width: 400px;">FOOTER CTA TITLE</div>
-        <?php endif; ?>
-        
-        <a href="<?php echo home_url('/find-program'); ?>" class="btn btn-outline-dark btn-lg px-5 py-3">
-            S'inscrire
-        </a>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-4 border-top">
-    <div class="container text-center">
-        <p class="mb-0 text-muted">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
-    </div>
-</footer>
-
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>
