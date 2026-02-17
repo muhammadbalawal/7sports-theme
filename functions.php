@@ -36,4 +36,49 @@ add_action('after_setup_theme', 'sevensports_setup');
 
 // Include MetaBox fields
 require get_template_directory() . '/inc/metabox-fields.php';
+
+// Hide metaboxes based on page template
+add_action('admin_head', function() {
+    global $post;
+    
+    if (!$post || $post->post_type !== 'page') {
+        return;
+    }
+    
+    $front_page_id = get_option('page_on_front');
+    $current_template = get_post_meta($post->ID, '_wp_page_template', true);
+    
+    // If NOT front page, hide front page metaboxes
+    if ($post->ID != $front_page_id) {
+        ?>
+        <style>
+            #hero_section,
+            #highlights_section,
+            #programs_section,
+            #testimonials_section,
+            #messages_section,
+            #cta_buttons_section {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+    
+    // If NOT using Programs template, hide programs metaboxes
+    if ($current_template !== 'template-programs.php') {
+        ?>
+        <style>
+            #programs_hero_section,
+            #programs_categories_section,
+            #age_groups_section,
+            #programs_registration_cta,
+            #additional_services_section,
+            #programs_submission_cta,
+            #programs_bottom_cta {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+});
 ?>

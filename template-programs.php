@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Programs Page
- * Template for displaying programs page
+ * Template Post Type: page
  */
 ?>
 <!DOCTYPE html>
@@ -38,6 +38,24 @@
             font-size: 14px;
             text-align: center;
         }
+        
+        /* Category Tab Styles */
+        .category-tab {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-tab.active {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+        .program-content {
+            display: none;
+        }
+        .program-content.active {
+            display: block;
+        }
+        
+        /* Age Group Tab Styles */
         .age-group-tab {
             cursor: pointer;
             transition: all 0.3s;
@@ -82,7 +100,6 @@
             <p class="fs-5"><?php echo esc_html($hero_subtitle); ?></p>
         <?php endif; ?>
         
-        <!-- Down Arrow Icon -->
         <div class="mt-4">
             <svg width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
@@ -91,20 +108,20 @@
     </div>
 </section>
 
-<!-- Category Navigation Buttons -->
+<!-- Category Navigation Buttons (TABS) -->
 <section class="section-wireframe">
     <div class="container">
         <div class="d-flex flex-wrap gap-3 justify-content-center">
             <?php 
             for ($i = 1; $i <= 4; $i++):
                 $btn_text = rwmb_meta("cat_button_{$i}_text");
-                $btn_link = rwmb_meta("cat_button_{$i}_link");
                 if ( $btn_text ):
             ?>
-                <a href="<?php echo esc_url($btn_link ?: '#'); ?>" 
-                   class="btn btn-outline-dark btn-lg px-4 py-2" style="min-width: 150px;">
+                <button class="btn btn-outline-dark btn-lg category-tab <?php echo ($i === 1) ? 'active' : ''; ?>" 
+                        data-target="program-<?php echo $i; ?>"
+                        style="min-width: 150px;">
                     <?php echo esc_html($btn_text); ?>
-                </a>
+                </button>
             <?php 
                 endif;
             endfor; 
@@ -113,50 +130,57 @@
     </div>
 </section>
 
-<!-- Featured Program Section -->
+<!-- Featured Programs Content (ONE PER CATEGORY) -->
 <section class="section-wireframe">
     <div class="container">
-        <div class="text-center mb-5">
-            <?php 
-            $program_icon = rwmb_meta( 'featured_program_icon' );
-            if ( !empty($program_icon) ):
-                $icon_url = wp_get_attachment_image_url( $program_icon[0], 'thumbnail' );
-            ?>
-                <img src="<?php echo esc_url($icon_url); ?>" alt="Icon" 
-                     class="mb-3" style="max-height: 80px;">
-            <?php endif; ?>
+        <?php 
+        // Loop through 4 possible programs (one for each category button)
+        for ($i = 1; $i <= 4; $i++):
+            $program_icon = rwmb_meta("featured_program_{$i}_icon");
+            $program_title = rwmb_meta("featured_program_{$i}_title");
+            $program_image = rwmb_meta("featured_program_{$i}_image");
+            $program_desc = rwmb_meta("featured_program_{$i}_description");
             
-            <?php $program_title = rwmb_meta( 'featured_program_title' ); ?>
-            <?php if ( $program_title ): ?>
-                <h2 class="display-5 fw-bold"><?php echo esc_html($program_title); ?></h2>
-            <?php endif; ?>
-        </div>
-        
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <?php 
-                $program_image = rwmb_meta( 'featured_program_image' );
-                if ( !empty($program_image) ):
-                    $program_image_url = wp_get_attachment_image_url( $program_image[0], 'large' );
-                ?>
-                    <img src="<?php echo esc_url($program_image_url); ?>" 
-                         alt="Program" 
-                         class="img-fluid rounded"
-                         style="max-height: 400px; width: 100%; object-fit: cover;">
-                <?php else: ?>
-                    <div class="wireframe-box" style="height: 400px;">PROGRAM IMAGE</div>
-                <?php endif; ?>
+            // Only show if at least title exists
+            if ( $program_title ):
+                $icon_url = !empty($program_icon) ? wp_get_attachment_image_url($program_icon[0], 'thumbnail') : '';
+                $image_url = !empty($program_image) ? wp_get_attachment_image_url($program_image[0], 'large') : '';
+        ?>
+            <div class="program-content <?php echo ($i === 1) ? 'active' : ''; ?>" id="program-<?php echo $i; ?>">
+                <!-- Icon & Title -->
+                <div class="text-center mb-5">
+                    <?php if ( $icon_url ): ?>
+                        <img src="<?php echo esc_url($icon_url); ?>" alt="Icon" 
+                             class="mb-3" style="max-height: 80px;">
+                    <?php endif; ?>
+                    
+                    <h2 class="display-5 fw-bold"><?php echo esc_html($program_title); ?></h2>
+                </div>
+                
+                <!-- Image on top, Description below -->
+                <div class="mb-4">
+                    <?php if ( $image_url ): ?>
+                        <img src="<?php echo esc_url($image_url); ?>" 
+                             alt="<?php echo esc_attr($program_title); ?>" 
+                             class="img-fluid rounded"
+                             style="max-height: 400px; width: 100%; object-fit: cover;">
+                    <?php else: ?>
+                        <div class="wireframe-box" style="height: 400px;">PROGRAM IMAGE</div>
+                    <?php endif; ?>
+                </div>
+                
+                <div>
+                    <?php if ( $program_desc ): ?>
+                        <p class="fs-6"><?php echo nl2br(esc_html($program_desc)); ?></p>
+                    <?php else: ?>
+                        <div class="wireframe-box">PROGRAM DESCRIPTION</div>
+                    <?php endif; ?>
+                </div>
             </div>
-            
-            <div class="col-md-6">
-                <?php $program_desc = rwmb_meta( 'featured_program_description' ); ?>
-                <?php if ( $program_desc ): ?>
-                    <p class="fs-6"><?php echo nl2br(esc_html($program_desc)); ?></p>
-                <?php else: ?>
-                    <div class="wireframe-box">PROGRAM DESCRIPTION</div>
-                <?php endif; ?>
-            </div>
-        </div>
+        <?php 
+            endif;
+        endfor; 
+        ?>
     </div>
 </section>
 
@@ -233,7 +257,7 @@
             <p class="text-center mb-5"><?php echo esc_html($services_desc); ?></p>
         <?php endif; ?>
         
-        <div class="row g-4">
+        <div class="row g-4 mx-auto" style="max-width: 720px;">
             <?php 
             for ($i = 1; $i <= 5; $i++):
                 $service_title = rwmb_meta("service_{$i}_title");
@@ -245,7 +269,7 @@
                         $icon_url = wp_get_attachment_image_url( $service_icon[0], 'thumbnail' );
                     }
             ?>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-12">
                     <div class="border border-2 rounded p-4 bg-white h-100">
                         <div class="d-flex align-items-start gap-3">
                             <?php if ( $icon_url ): ?>
@@ -253,7 +277,7 @@
                                      alt="<?php echo esc_attr($service_title); ?>" 
                                      style="width: 50px; height: 50px; object-fit: contain;">
                             <?php else: ?>
-                                <div class="wireframe-box" style="width: 50px; height: 50px; min-height: auto;">🎂</div>
+                                <div class="wireframe-box" style="width: 50px; height: 50px; min-height: auto;">Image</div>
                             <?php endif; ?>
                             
                             <div class="flex-grow-1">
@@ -262,8 +286,6 @@
                                     <p class="mb-0 small"><?php echo esc_html($service_desc); ?></p>
                                 <?php endif; ?>
                             </div>
-                            
-                            <button class="btn btn-link text-danger p-0" style="font-size: 1.5rem;">+</button>
                         </div>
                     </div>
                 </div>
@@ -333,18 +355,36 @@
 <?php get_footer(); ?>
 
 <script>
-// Age Group Tabs functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.age-group-tab');
-    const contents = document.querySelectorAll('.age-group-content');
+    // Category Tabs functionality (Program switcher)
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const programContents = document.querySelectorAll('.program-content');
     
-    tabs.forEach(tab => {
+    categoryTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const target = this.getAttribute('data-target');
             
-            // Remove active class from all tabs and contents
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
+            // Remove active class from all category tabs and program contents
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            programContents.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding program
+            this.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+    
+    // Age Group Tabs functionality
+    const ageTabs = document.querySelectorAll('.age-group-tab');
+    const ageContents = document.querySelectorAll('.age-group-content');
+    
+    ageTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            
+            // Remove active class from all age tabs and contents
+            ageTabs.forEach(t => t.classList.remove('active'));
+            ageContents.forEach(c => c.classList.remove('active'));
             
             // Add active class to clicked tab and corresponding content
             this.classList.add('active');
