@@ -34,7 +34,29 @@ function sevensports_setup() {
 }
 add_action('after_setup_theme', 'sevensports_setup');
 
-// Include MetaBox fields
+/**
+ * Safely get the first attachment ID from a Meta Box image/image_advanced field value.
+ * Prevents "Undefined array key 0" when the value is empty or in a different format.
+ *
+ * @param mixed $value Value returned by rwmb_meta() for an image field.
+ * @return int|null Attachment ID or null.
+ */
+function sevensports_first_image_id( $value ) {
+    if ( empty( $value ) || ! is_array( $value ) ) {
+        return null;
+    }
+    $first = reset( $value );
+    if ( is_numeric( $first ) ) {
+        return (int) $first;
+    }
+    if ( is_array( $first ) && isset( $first['ID'] ) ) {
+        return (int) $first['ID'];
+    }
+    return null;
+}
+
+// Include post type and MetaBox fields
+require get_template_directory() . '/inc/post-type-program.php';
 require get_template_directory() . '/inc/metabox-fields.php';
 
 // Hide metaboxes based on page template
@@ -75,6 +97,56 @@ add_action('admin_head', function() {
             #additional_services_section,
             #programs_submission_cta,
             #programs_bottom_cta {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+    
+    // If NOT using FAQ template, hide FAQ metaboxes
+    if ($current_template !== 'template-faq.php') {
+        ?>
+        <style>
+            #faq_hero_section,
+            #faq_payment_section,
+            #faq_calendar_section,
+            #faq_age_section,
+            #faq_refund_section,
+            #faq_equipment_section,
+            #faq_contact_section {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+    
+    // If NOT using About template, hide About metaboxes
+    if ($current_template !== 'template-about.php') {
+        ?>
+        <style>
+            #about_hero_section,
+            #about_founder_section,
+            #about_coaches_section,
+            #about_values_section,
+            #about_action_section,
+            #about_why_section,
+            #about_stats_section,
+            #about_join_cta,
+            #about_bottom_cta {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+    
+    // If NOT using Registration template, hide Registration metaboxes
+    if ($current_template !== 'template-registration.php') {
+        ?>
+        <style>
+            #registration_hero_section,
+            #registration_regions_section,
+            #registration_map_settings,
+            #registration_bottom_cta {
                 display: none !important;
             }
         </style>

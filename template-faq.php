@@ -112,9 +112,10 @@
     $hero_image = rwmb_meta( 'faq_hero_image' );
     $hero_title = rwmb_meta( 'faq_hero_title' );
     $hero_subtitle = rwmb_meta( 'faq_hero_subtitle' );
+    $hero_image_id = sevensports_first_image_id( $hero_image );
     
-    if ( !empty($hero_image) ):
-        $hero_image_url = wp_get_attachment_image_url( $hero_image[0], 'full' );
+    if ( $hero_image_id ):
+        $hero_image_url = wp_get_attachment_image_url( $hero_image_id, 'full' );
     ?>
         <div class="hero-image-overlay" style="background-image: url('<?php echo esc_url($hero_image_url); ?>');">
             <div class="hero-overlay">

@@ -78,9 +78,9 @@
 <section class="section-wireframe text-center py-5" style="min-height: 400px;">
     <div class="container">
         <?php 
-        $hero_image = rwmb_meta( 'programs_hero_image' );
-        if ( !empty($hero_image) ):
-            $hero_image_url = wp_get_attachment_image_url( $hero_image[0], 'full' );
+        $hero_image_id = sevensports_first_image_id( rwmb_meta( 'programs_hero_image' ) );
+        if ( $hero_image_id ):
+            $hero_image_url = wp_get_attachment_image_url( $hero_image_id, 'full' );
         ?>
             <div class="mb-4">
                 <img src="<?php echo esc_url($hero_image_url); ?>" alt="Hero" 
@@ -143,8 +143,10 @@
             
             // Only show if at least title exists
             if ( $program_title ):
-                $icon_url = !empty($program_icon) ? wp_get_attachment_image_url($program_icon[0], 'thumbnail') : '';
-                $image_url = !empty($program_image) ? wp_get_attachment_image_url($program_image[0], 'large') : '';
+                $icon_id = sevensports_first_image_id( $program_icon );
+                $image_id = sevensports_first_image_id( $program_image );
+                $icon_url = $icon_id ? wp_get_attachment_image_url( $icon_id, 'thumbnail' ) : '';
+                $image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : '';
         ?>
             <div class="program-content <?php echo ($i === 1) ? 'active' : ''; ?>" id="program-<?php echo $i; ?>">
                 <!-- Icon & Title -->
@@ -264,10 +266,8 @@
                 if ( $service_title ):
                     $service_icon = rwmb_meta("service_{$i}_icon");
                     $service_desc = rwmb_meta("service_{$i}_description");
-                    $icon_url = '';
-                    if ( !empty($service_icon) ) {
-                        $icon_url = wp_get_attachment_image_url( $service_icon[0], 'thumbnail' );
-                    }
+                    $icon_id = sevensports_first_image_id( $service_icon );
+                    $icon_url = $icon_id ? wp_get_attachment_image_url( $icon_id, 'thumbnail' ) : '';
             ?>
                 <div class="col-12">
                     <div class="border border-2 rounded p-4 bg-white h-100">

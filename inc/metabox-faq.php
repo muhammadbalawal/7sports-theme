@@ -10,7 +10,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -45,7 +44,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -143,7 +141,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -241,7 +238,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -339,7 +335,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -399,7 +394,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
@@ -459,7 +453,6 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
         'context'    => 'normal',
         'priority'   => 'high',
         'include'    => array(
-            'relation' => 'OR',
             'template' => array( 'template-faq.php' ),
         ),
         'fields'     => array(
