@@ -33,6 +33,13 @@ function sevensports_faq_page_metabox_add( $meta_boxes ) {
                 'rows'        => 2,
                 'placeholder' => 'e.g., Trouvez Rapidement Les Réponses À Vos Questions.',
             ),
+            array(
+                'id'               => 'faq_section_bg_image',
+                'name'             => 'Section Background Image',
+                'type'             => 'image_advanced',
+                'max_file_uploads' => 1,
+                'desc'             => 'Background image for the main FAQ content section (section-wireframe).',
+            ),
         ),
     );
     

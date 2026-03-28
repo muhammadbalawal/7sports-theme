@@ -318,6 +318,13 @@ function sevensports_about_page_metabox_add( $meta_boxes ) {
                 'placeholder' => 'e.g., Nos valeurs',
                 'std'         => 'Nos valeurs',
             ),
+            array(
+                'id'               => 'values_section_bg_image',
+                'name'             => 'Section Background Image',
+                'type'             => 'image_advanced',
+                'max_file_uploads' => 1,
+                'desc'             => 'Background image for the Values section (covers the whole section).',
+            ),
             // Value 1
             array(
                 'name' => 'Value 1',

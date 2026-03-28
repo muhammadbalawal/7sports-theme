@@ -1,6 +1,6 @@
 <?php
 /**
- * Home Page Template - Fixed Fields Version
+ * Home Page Template - Fixed Fields Versio
  */
 ?>
 <!DOCTYPE html>
@@ -9,6 +9,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php bloginfo('name'); ?></title>
+    <link href="https://fonts.cdnfonts.com/css/more-sugar" rel="stylesheet">
     <?php wp_head(); ?>
     <style>
         /* Wireframe Styles */
@@ -63,6 +64,14 @@
             position: relative;
             z-index: 1;
         }
+        .hero-title {
+            font-family: 'More Sugar', cursive;
+            color: #fff;
+            -webkit-text-stroke: 16px #000;
+            paint-order: stroke fill;
+            font-size: 8rem !important;
+            letter-spacing: -0.05em;
+        }
         /* Carousel Controls */
         .carousel-control-prev, .carousel-control-next {
             width: 50px;
@@ -110,7 +119,7 @@ $hero_background_url = $hero_background_id ? wp_get_attachment_image_url( $hero_
         
         <?php $hero_title = $front_page_id ? rwmb_meta( 'hero_title', array(), $front_page_id ) : ''; ?>
         <?php if ( $hero_title ): ?>
-            <h1 class="display-3 fw-bold mb-3"><?php echo esc_html($hero_title); ?></h1>
+            <h1 class="display-3 fw-bold mb-3 hero-title"><?php echo esc_html($hero_title); ?></h1>
         <?php else: ?>
             <div class="wireframe-box mx-auto mb-3" style="max-width: 600px;">HERO TITLE</div>
         <?php endif; ?>

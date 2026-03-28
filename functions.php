@@ -55,9 +55,27 @@ function sevensports_first_image_id( $value ) {
     return null;
 }
 
+// Enqueue address autocomplete script on Program edit screens
+function sevensports_admin_enqueue_assets( $hook ) {
+    global $post;
+    if ( ( $hook === 'post.php' || $hook === 'post-new.php' )
+         && isset( $post )
+         && $post->post_type === 'program' ) {
+        wp_enqueue_script(
+            'sevensports-admin-geocode',
+            get_template_directory_uri() . '/js/admin-geocode.js',
+            array(),
+            '1.0.0',
+            true
+        );
+    }
+}
+add_action( 'admin_enqueue_scripts', 'sevensports_admin_enqueue_assets' );
+
 // Include post type and MetaBox fields
 require get_template_directory() . '/inc/post-type-program.php';
 require get_template_directory() . '/inc/metabox-fields.php';
+require get_template_directory() . '/inc/section-wireframe-background.php';
 
 // Hide metaboxes based on page template
 add_action('admin_head', function() {

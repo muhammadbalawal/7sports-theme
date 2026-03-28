@@ -37,6 +37,13 @@ function sevensports_registration_page_metabox_add( $meta_boxes ) {
                 'placeholder' => 'e.g., Choisissez Votre Région.',
                 'std'         => 'Choisissez Votre Région.',
             ),
+            array(
+                'id'               => 'registration_section_bg_image',
+                'name'             => 'Section Background Image',
+                'type'             => 'image_advanced',
+                'max_file_uploads' => 1,
+                'desc'             => 'Background image for section-wireframe sections (filter and map area).',
+            ),
         ),
     );
     
